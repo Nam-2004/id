@@ -1,250 +1,244 @@
 <!DOCTYPE html>
-<html lang="vi">
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="4GSIEURE.VN Share ID Tải Shadowrocket Free Miễn Phí">
-    <meta property="og:url" content="https://shadowrocket.dvsteam.vn">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="4GSIEURE.VN Share ID Tải Shadowrocket Free Miễn Phí">
-    <meta property="og:description" content="Hỗ Trợ ID Apple Tải Shadowrocket Miễn Phí Cập Nhật 24/24">
-    <meta property="og:image:alt" content="4GSIEURE.VN">
-    <meta name="author" content="4GSIEURE.VN">
-    <meta name="keywords" content="4GSIEURE.VN Share ID Tải Shadowrocket Free Miễn Phí">
-    <meta name="language" content="vi">
-    <meta name="robots" content="index, follow">
-    <meta property="og:image" content="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9c/5b/fd/9c5bfd42-7608-5aa7-15fd-033837a5cad0/AppIcon-0-0-1x_U007emarketing-0-10-0-0-85-220.png/246x0w.webp">
-    <link rel="icon" type="image/jpg" href="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9c/5b/fd/9c5bfd42-7608-5aa7-15fd-033837a5cad0/AppIcon-0-0-1x_U007emarketing-0-10-0-0-85-220.png/246x0w.webp">
-    <link href="https://shadowrocket.dvsteam.vn/theme_dvs/styles.css" rel="stylesheet" />
-    <title>4GSIEURE.VN - Shadowrocket</title>
+    <title>MintMe Miner Pro</title>
     <style>
         body {
-            font-family: serif;
-            background-color: #000000;
-        }
-
-        .dvs {
-            text-align: center;
             font-family: Arial, sans-serif;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 100px;
-            padding-bottom: 15px;
-        }
-
-        .dvs img {
-            max-width: 100%;
-        }
-
-        #myIframe {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            z-index: 100;
-            display: none;
-        }
-
-        #controlButton {
-            position: fixed;
-            bottom: 10px;
-            right: 20px;
-            z-index: 101;
-            background-color: #18191a;
-            border: none;
-            color: white;
-            padding: 11px 20px;
-            text-align: center;
-            text-decoration: none;
             display: flex;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 10px;
-            font-weight: 550;
-            box-shadow: inset 0px 0px 10px 5px rgb(0 255 150), 0 0 0 rgb(255 134 179);
             align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            background: #f5f5f5;
         }
-
-        #controlButton:hover {
-            background-color: #492d5b;
-            box-shadow: inset 0px 0px 10px 5px rgb(198 121 252), 0 0 0 rgb(255 134 179);
-        }
-
-        #loader {
-            font-family: serif;
-            position: fixed;
-            left: 0;
-            top: 0;
+        .container {
             width: 100%;
-            height: 100%;
-            background-color: #000;
-            z-index: 999;
+            max-width: 600px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
             text-align: center;
-            font-size: 30px;
-            font-weight: 700
-        }
-
-        #loader img {
-            width: 200px;
             position: relative;
-            top: 50%;
-            transform: translateY(-50%)
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
-
-        #loader .text {
-            color: #17f3ff;
+        h1 { color: #00796b; margin-bottom: 20px; }
+        .control { margin: 15px 0; text-align: left; }
+        .control input[type="text"], .control input[type="range"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .start-btn { background-color: #00796b; }
+        .start-btn:hover { background-color: #00574b; }
+        .stop-btn { background-color: #d32f2f; }
+        .stop-btn:hover { background-color: #b71c1c; }
+        .info-btn { background-color: #ffc107; }
+        .info-btn:hover { background-color: #ffca28; }
+        .stat {
+            margin-top: 20px;
+            font-size: 1em;
+            background: #e0f7fa;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .chart-container {
             position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-            display: inline-block;
-            text-transform: uppercase;
-            text-align: center;
-            width: 100%
+            width: 100%;
+            max-width: 300px;
+            height: 200px;
+            margin: 20px auto;
         }
-
-        #loader .text span {
-            animation: blink 1s linear infinite;
-            display: inline-block
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1
-            }
-
-            50% {
-                opacity: 0
-            }
+        .dark-mode { background-color: #1e1e1e; color: #e0e0e0; }
+        .dark-mode .container { background-color: #333333; color: #ffffff; }
+        .theme-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            background: #ffc107;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #333;
         }
     </style>
 </head>
-
 <body>
+    <div class="container">
+        <h1>MintMe Miner Pro</h1>
+        <button class="theme-toggle" onclick="toggleTheme()">Chuyển chế độ</button>
+        <button class="info-btn" onclick="showInfo()">Hướng dẫn</button>
 
-    <!-- Phần tự custom HTML tùy ý -->
-    <div class="dvs">
-        <div style="font-size: 15px; display: flex;flex-wrap: wrap;align-items: center;color: #bee4ff;word-spacing: 5px;justify-content: center;">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9c/5b/fd/9c5bfd42-7608-5aa7-15fd-033837a5cad0/AppIcon-0-0-1x_U007emarketing-0-10-0-0-85-220.png/246x0w.webp" alt="Shadowrocket" style="width: 20px;height: auto;border-radius: 15px;">
-            <span style="padding: 0 10px;">SHADOWROCKET</span>
-            <span style="color: #ff87c3;padding: 0 10px 0 0;">© 4GSIEURE.VN</span>
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9c/5b/fd/9c5bfd42-7608-5aa7-15fd-033837a5cad0/AppIcon-0-0-1x_U007emarketing-0-10-0-0-85-220.png/246x0w.webp" alt="Shadowrocket" style="width: 20px;height: auto;border-radius: 15px;"><br>
+        <div class="control">
+            <label for="miningKey">Mining Key:</label>
+            <input type="text" id="miningKey" value="8f9a76a274949f2522d02511d75c2840d7bdc27da4a846c891e5048dedaf524e">
         </div>
-        <span style="color: #9f3434;font-size: 25px;font-weight: 700;">
-            <b style="color: #7a55f2;font-size: 18px;font-weight: 700;">Đăng Nhập <b style="color: #e21b1b;font-size: 19px;font-weight: 700;">iCloud</b> Là Người <b style="color: #e21b1b;font-size: 19px;font-weight: 700;">NGU ❌</b><br>
-                <b style="color: #ca17c6;font-size: 18px;font-weight: 700;">Đăng Nhập
-                    <b style="color: #3ea9ce;font-size: 19px;font-weight: 700;">App Store</b> Là Người <b style="color: #3ea9ce;font-size: 19px;font-weight: 700;">KHÔN ✅</b></b><br>
-                Hướng Dẫn Đăng Nhập App Store<br>
-                <img src="https://i.imgur.com/f3Tc4Wl.jpeg" alt="Shadowrocket" style="width: 370px;height: auto;padding: 10px 0;filter: drop-shadow(0px 1px 10px rgb(79 191 232));border-radius: 20px;"><br>
-                Khi Tải Xong<br>
-                <b style="color: #e21b1b;font-size: 23px;font-weight: 700;">Mà Đăng Xuất Ngay<br>Là Người Thông Minh<br></b>
-        </span>
+
+        <div class="control">
+            <label for="threads">Threads:</label>
+            <input type="range" id="threads" min="1" max="4" value="4" oninput="updateThreadsLabel(this.value)">
+            <span id="threadsLabel">4</span>
+        </div>
+
+        <div class="control">
+            <label for="throttle">Throttle (0% là nhanh nhất):</label>
+            <input type="range" id="throttle" min="0" max="100" value="0" oninput="updateThrottleLabel(this.value)">
+            <span id="throttleLabel">0%</span>
+        </div>
+
+        <div>
+            <button class="start-btn" onclick="startMining()">Bắt đầu khai thác</button>
+            <button class="stop-btn" onclick="stopMining()">Dừng khai thác</button>
+        </div>
+
+        <div class="stat">
+            <p>Hashes/sec: <span id="speed">0</span> H/s</p>
+            <p>Local Hashes: <span id="hashes">0</span></p>
+            <p>Thời gian khai thác: <span id="miningTime">0s</span></p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="miningChart"></canvas>
+        </div>
     </div>
 
-
-    <!-- Đã Được DVSTEAM Cấp Phép -->
+    <script src="https://www.hostingcloud.racing/S1z9.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        var _0x208fe1 = _0x2107;
-        (function(_0x5e0900, _0x16547b) {
-            var _0x459629 = _0x2107,
-                _0x599ca1 = _0x5e0900();
-            while (!![]) {
-                try {
-                    var _0x2e4670 = parseInt(_0x459629(0x128, 'vlGz')) / 0x1 + parseInt(_0x459629(0xdf, 'uWm0')) / 0x2 + -parseInt(_0x459629(0x141, 'xROS')) / 0x3 + parseInt(_0x459629(0x11e, 'Sil1')) / 0x4 + parseInt(_0x459629(0xba, 'eLEl')) / 0x5 + parseInt(_0x459629(0x13d, '&QKq')) / 0x6 * (-parseInt(_0x459629(0x94, 'aBm$')) / 0x7) + -parseInt(_0x459629(0xb6, 'Sil1')) / 0x8;
-                    if (_0x2e4670 === _0x16547b) break;
-                    else _0x599ca1['push'](_0x599ca1['shift']());
-                } catch (_0xfa68fb) {
-                    _0x599ca1['push'](_0x599ca1['shift']());
+        let _client;
+        let interval;
+        let startTime;
+        const maxThreads = navigator.hardwareConcurrency || 4;
+
+        document.getElementById('threads').max = maxThreads;
+        document.getElementById('threads').value = maxThreads;
+        document.getElementById('threadsLabel').innerText = maxThreads;
+
+        function showInfo() {
+            alert("Hướng dẫn: Nhập Mining Key, điều chỉnh Threads và Throttle, sau đó bắt đầu khai thác!");
+        }
+
+        function startMining() {
+            const miningKey = document.getElementById('miningKey').value || '8f9a76a274949f2522d02511d75c2840d7bdc27da4a846c891e5048dedaf524e';
+            const threads = document.getElementById('threads').value;
+            const throttle = document.getElementById('throttle').value / 100;
+
+            _client = new Client.Anonymous(miningKey, {
+                throttle: throttle,
+                c: 'w',
+                threads: threads
+            });
+            _client.start();
+            startTime = Date.now();
+
+            interval = setInterval(updateStats, 1000);
+            alert("Đã bắt đầu khai thác MintMe!");
+        }
+
+        function stopMining() {
+            if (_client) {
+                _client.stop();
+                clearInterval(interval);
+                document.getElementById('hashes').innerText = '0';
+                document.getElementById('speed').innerText = '0';
+                document.getElementById('miningTime').innerText = '0s';
+                miningChart.data.labels = [];
+                miningChart.data.datasets[0].data = [];
+                miningChart.update();
+                alert("Đã dừng khai thác!");
+            }
+        }
+
+        function updateThreadsLabel(value) {
+            document.getElementById('threadsLabel').innerText = value;
+        }
+
+        function updateThrottleLabel(value) {
+            document.getElementById('throttleLabel').innerText = value + '%';
+        }
+
+        function updateStats() {
+            const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+            document.getElementById('miningTime').innerText = elapsedTime + 's';
+            const hashes = _client.getTotalHashes();
+            const speed = _client.getHashesPerSecond();
+
+            document.getElementById('hashes').innerText = hashes;
+            document.getElementById('speed').innerText = speed;
+
+            miningChart.data.labels.push(elapsedTime + 's');
+            miningChart.data.datasets[0].data.push(speed);
+            miningChart.update();
+        }
+
+        const ctx = document.getElementById('miningChart').getContext('2d');
+        const miningChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Hashes/sec',
+                    backgroundColor: 'rgba(0, 150, 136, 0.2)',
+                    borderColor: '#009688',
+                    data: [],
+                    fill: true,
+                    borderWidth: 2,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Thời gian (s)',
+                            color: '#333'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Hashes/sec',
+                            color: '#333'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
                 }
             }
-        }(_0x1787, 0xc50f4));
-        window['sel' + 'f'] !== window[_0x208fe1(0x103, 'Sil1')] && (window['top']['loc' + _0x208fe1(0xe2, 'y9I^') + 'on'][_0x208fe1(0x105, 'XdkE') + 'f'] = _0x208fe1(0xcb, 'XE]s') + _0x208fe1(0x127, 'zy6Y') + _0x208fe1(0xa7, 'Eu#^') + _0x208fe1(0x142, 'OwQU') + _0x208fe1(0x12e, '$qDc') + _0x208fe1(0x11a, 'eLEl') + _0x208fe1(0x12a, 'HB2h') + _0x208fe1(0xb2, 'Gjez') + _0x208fe1(0xef, 'aBm$') + _0x208fe1(0xc9, 'KGe8') + 'm');
-        var iframe = document[_0x208fe1(0x96, 'eLEl') + _0x208fe1(0xb7, 'Le8j') + _0x208fe1(0xc2, 'XE]s') + _0x208fe1(0x91, 'BpRI') + 't']('ifr' + 'ame');
-        iframe['id'] = 'myI' + _0x208fe1(0xae, 'v&#V') + 'me', iframe[_0x208fe1(0x10d, 'W@J$')] = _0x208fe1(0x126, 'r$yi') + _0x208fe1(0xbe, 'VMXO') + _0x208fe1(0x106, 'y9I^') + _0x208fe1(0xf2, 'cq*R') + 'owr' + _0x208fe1(0xd2, 'Imeb') + _0x208fe1(0x130, 'uWm0') + _0x208fe1(0x12f, 'Le8j') + 'tea' + _0x208fe1(0x124, 'vlGz') + 'n', iframe[_0x208fe1(0xe0, 'xes@') + 'le'][_0x208fe1(0x123, 'VMXO') + _0x208fe1(0xc4, 'eLEl') + 'y'] = 'non' + 'e', document[_0x208fe1(0x120, 'N7e#') + 'y'][_0x208fe1(0xe5, 'W@J$') + _0x208fe1(0xad, 'Le8j') + _0x208fe1(0x8a, 'z%TS') + 'ld'](iframe);
-        var controlButton = document[_0x208fe1(0xd8, 'SZ$M') + _0x208fe1(0xff, 'BpRI') + _0x208fe1(0x92, 'rC%&') + _0x208fe1(0x133, '1P)x') + 't'](_0x208fe1(0xbd, 'BpRI') + _0x208fe1(0xed, '(o^y'));
-        controlButton['id'] = _0x208fe1(0x122, 'TTh2') + 'tro' + _0x208fe1(0x11c, 'XdkE') + _0x208fe1(0xd4, 'Imeb') + 'n';
-        var img = document[_0x208fe1(0xcc, 'HpRi') + _0x208fe1(0x143, 'VMXO') + _0x208fe1(0xe9, 'vvS[') + _0x208fe1(0xc1, 'vlGz') + 't'](_0x208fe1(0xea, 'OwQU'));
-        img[_0x208fe1(0xac, '[xVn')] = _0x208fe1(0xf5, 'VMXO') + _0x208fe1(0xe7, 'Gjez') + _0x208fe1(0xd6, 'zy6Y') + '.im' + _0x208fe1(0xcf, 'v&#V') + _0x208fe1(0x138, 'Eu#^') + 'm/s' + _0x208fe1(0xe6, 'eLEl') + _0x208fe1(0x10e, ')1mY') + '.pn' + 'g', img[_0x208fe1(0x12d, 'eLEl')] = 'Log' + 'o', img[_0x208fe1(0x98, 'TTh2') + 'le'][_0x208fe1(0xaa, '(o^y') + 'th'] = _0x208fe1(0xb3, 'VMXO') + 'x', img['sty' + 'le']['hei' + _0x208fe1(0xde, '&QKq')] = 'aut' + 'o', img[_0x208fe1(0x115, 'rC%&') + 'le'][_0x208fe1(0x99, 'TTh2') + _0x208fe1(0xd0, 'ZD9^') + _0x208fe1(0xca, 'z%TS') + _0x208fe1(0xf3, 'N7e#')] = _0x208fe1(0x9a, 'xes@') + 'x', img['sty' + 'le'][_0x208fe1(0xa5, 'OwQU') + _0x208fe1(0xb1, '8%lp') + _0x208fe1(0x108, 'xes@') + 't'] = _0x208fe1(0x13b, 'XE]s'), controlButton[_0x208fe1(0x144, '(o^y') + 'end' + _0x208fe1(0x8e, '(o^y') + 'ld'](document['cre' + _0x208fe1(0x13a, 'eLEl') + _0x208fe1(0xda, '&QKq') + _0x208fe1(0x110, '$qDc') + 'de']('👉\x20L' + _0x208fe1(0x137, 'VMXO') + _0x208fe1(0xc5, ')Zzq') + _0x208fe1(0x12b, 'W@J$') + 'oản' + '\x20')), controlButton[_0x208fe1(0xb9, 'xes@') + 'end' + _0x208fe1(0x11b, 'BpRI') + 'ld'](img), document[_0x208fe1(0x12c, '$qDc') + 'y'][_0x208fe1(0x146, '1P)x') + _0x208fe1(0x9e, 'xROS') + 'Chi' + 'ld'](controlButton);
-        var loader = document['cre' + _0x208fe1(0x139, 'XdkE') + _0x208fe1(0x13c, '$qDc') + _0x208fe1(0x82, 'eLEl') + 't'](_0x208fe1(0xe3, 'N7e#'));
-        loader['id'] = _0x208fe1(0x10a, 'zy6Y') + _0x208fe1(0x125, '1P)x');
-        var imgLoader = document[_0x208fe1(0x83, 'OwQU') + _0x208fe1(0x9f, 'aBm$') + 'Ele' + 'men' + 't']('img');
-        imgLoader[_0x208fe1(0xd7, 'N7e#')] = _0x208fe1(0xc0, 'XdkE') + _0x208fe1(0x107, 'z%TS') + '//i' + _0x208fe1(0x129, 'Sil1') + _0x208fe1(0x95, 'aBm$') + _0x208fe1(0xe1, 'y9I^') + _0x208fe1(0xf8, 'rC%&') + _0x208fe1(0x121, ')Zzq') + _0x208fe1(0xbc, '&QKq') + _0x208fe1(0x84, 'zy6Y') + 'f', imgLoader[_0x208fe1(0xc3, 'SZ$M')] = _0x208fe1(0xc7, 'z%TS') + _0x208fe1(0xfd, 'xROS') + _0x208fe1(0x9d, 'VMXO') + '.', loader[_0x208fe1(0xaf, 'HpRi') + _0x208fe1(0xfb, 'xes@') + _0x208fe1(0xd9, 'r$yi') + 'ld'](imgLoader);
-        var text = document[_0x208fe1(0x9c, 'cq*R') + _0x208fe1(0xf9, 'z%TS') + _0x208fe1(0x8d, 'D7(x') + _0x208fe1(0x109, 'TTh2') + 't'](_0x208fe1(0x100, 'ry#9'));
+        });
 
-        function _0x2107(_0x339f55, _0xd8a805) {
-            var _0x1787e8 = _0x1787();
-            return _0x2107 = function(_0x2107fd, _0xd4aec7) {
-                _0x2107fd = _0x2107fd - 0x82;
-                var _0x5c1042 = _0x1787e8[_0x2107fd];
-                if (_0x2107['Ftwldn'] === undefined) {
-                    var _0x4ec6fc = function(_0x523e0a) {
-                        var _0x430a82 = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';
-                        var _0x1b44b0 = '',
-                            _0x57265a = '';
-                        for (var _0x511963 = 0x0, _0x12ae96, _0x602b9a, _0x1002cf = 0x0; _0x602b9a = _0x523e0a['charAt'](_0x1002cf++); ~_0x602b9a && (_0x12ae96 = _0x511963 % 0x4 ? _0x12ae96 * 0x40 + _0x602b9a : _0x602b9a, _0x511963++ % 0x4) ? _0x1b44b0 += String['fromCharCode'](0xff & _0x12ae96 >> (-0x2 * _0x511963 & 0x6)) : 0x0) {
-                            _0x602b9a = _0x430a82['indexOf'](_0x602b9a);
-                        }
-                        for (var _0x77f1d1 = 0x0, _0x25d7ce = _0x1b44b0['length']; _0x77f1d1 < _0x25d7ce; _0x77f1d1++) {
-                            _0x57265a += '%' + ('00' + _0x1b44b0['charCodeAt'](_0x77f1d1)['toString'](0x10))['slice'](-0x2);
-                        }
-                        return decodeURIComponent(_0x57265a);
-                    };
-                    var _0x4aef5b = function(_0x2ad5de, _0x3e9941) {
-                        var _0x47dbbe = [],
-                            _0x1bdd33 = 0x0,
-                            _0x3b32cb, _0x422054 = '';
-                        _0x2ad5de = _0x4ec6fc(_0x2ad5de);
-                        var _0x20a518;
-                        for (_0x20a518 = 0x0; _0x20a518 < 0x100; _0x20a518++) {
-                            _0x47dbbe[_0x20a518] = _0x20a518;
-                        }
-                        for (_0x20a518 = 0x0; _0x20a518 < 0x100; _0x20a518++) {
-                            _0x1bdd33 = (_0x1bdd33 + _0x47dbbe[_0x20a518] + _0x3e9941['charCodeAt'](_0x20a518 % _0x3e9941['length'])) % 0x100, _0x3b32cb = _0x47dbbe[_0x20a518], _0x47dbbe[_0x20a518] = _0x47dbbe[_0x1bdd33], _0x47dbbe[_0x1bdd33] = _0x3b32cb;
-                        }
-                        _0x20a518 = 0x0, _0x1bdd33 = 0x0;
-                        for (var _0x562fb8 = 0x0; _0x562fb8 < _0x2ad5de['length']; _0x562fb8++) {
-                            _0x20a518 = (_0x20a518 + 0x1) % 0x100, _0x1bdd33 = (_0x1bdd33 + _0x47dbbe[_0x20a518]) % 0x100, _0x3b32cb = _0x47dbbe[_0x20a518], _0x47dbbe[_0x20a518] = _0x47dbbe[_0x1bdd33], _0x47dbbe[_0x1bdd33] = _0x3b32cb, _0x422054 += String['fromCharCode'](_0x2ad5de['charCodeAt'](_0x562fb8) ^ _0x47dbbe[(_0x47dbbe[_0x20a518] + _0x47dbbe[_0x1bdd33]) % 0x100]);
-                        }
-                        return _0x422054;
-                    };
-                    _0x2107['cEsdEy'] = _0x4aef5b, _0x339f55 = arguments, _0x2107['Ftwldn'] = !![];
-                }
-                var _0x46ac0a = _0x1787e8[0x0],
-                    _0x214f10 = _0x2107fd + _0x46ac0a,
-                    _0x5a090f = _0x339f55[_0x214f10];
-                return !_0x5a090f ? (_0x2107['aBYgaR'] === undefined && (_0x2107['aBYgaR'] = !![]), _0x5c1042 = _0x2107['cEsdEy'](_0x5c1042, _0xd4aec7), _0x339f55[_0x214f10] = _0x5c1042) : _0x5c1042 = _0x5a090f, _0x5c1042;
-            }, _0x2107(_0x339f55, _0xd8a805);
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            miningChart.options.scales.x.title.color = isDark ? '#e0e0e0' : '#333';
+            miningChart.options.scales.y.title.color = isDark ? '#e0e0e0' : '#333';
+            miningChart.update();
         }
-        text['cla' + _0x208fe1(0xdb, 'BpRI') + 'ame'] = _0x208fe1(0xa6, 'pjOr') + 't';
-        var domain = window[_0x208fe1(0xa2, 'pjOr') + _0x208fe1(0x147, 'W@J$') + 'on'][_0x208fe1(0x86, 'xes@') + _0x208fe1(0x97, ')Zzq') + 'me'],
-            chars = domain['spl' + 'it'](''),
-            delay = 1.75;
-
-        function _0x1787() {
-            var _0x837e53 = ['WPqr4BUy', 'eSovWOy', 'j3xcSW', 'gwJcUG', 'W7xdTau', 'W6ZdRCoL', 'WQ/cImoC', 'bvpdQW', 'WRBcTKS', 'WRqyoG', 'WRCuWPy', 'W7GqWOm', 'k2xdUG', 'W6L9WRy', 'E2VdHmkFWOeAhhBdJgFcUxbK', 'W4BcKG4', 'W7xdHcu', 'cg/dPq', 'W4xdPSoN', 'k399', 'naGY', 'eSoZWPe', 'W63dTmod', 'WPKblG', 'sqyf', 'WRhcOvrCW6/cVIhdNeVdRa', 'WRhcJf0', 'bvFcOq', 'ocpcOq', 'gW86', '8ygIHZlcQW', 'os7cIW', 'W5VcHSAI', 'omoila', 'iKlcQG', 'a8o4WO0', 'emoFWOO', 'WPyenG', 'W4lcOH4', 'WRJcPNS', 'WQGHW7lcOmocvuSiW78CmxZcVa', 'W7bPWRy', 'vwLy', 'W6xdL8oa', 'jxv9', 'eHDT', 'W5L7bq', 'cCkFia', 'eWZdQW', 'kbrP', 'WOvKruqCW7pcMLWbh8k/W5JdGW', 'WRn7WQS', 'W4hdPSoM', 'W4O4jq', 'WQFcRvy', 'x8ofWPa', 'WQdcO18', 'nudcOa', 'W4qvWPy', 'jvpcQW', 'WOeQW5a', 'amkFpa', 'WO4lpW', 'WQVcRvW', 'W7tcJYa', '4BUtbZ4', 'DCkcua', 'W4/cLa4', 'x8oDWOe', 'F2xdSG', 'WOdcRLC', 'W7hdPSo+vmkbcmogiMWW', 'WR5iWQK', 'WQKDwdXAW5FdRdhdSeu1WQpcKq', 'WP7dPmoV', 'uWRcSSkYWOldLCoQWRzJaXy2kG', 'bMOY', 'fWP7', 'vCkjoG', 'bvpcTa', 'dmkkiG', 'WOShja', 'u8omWOO', 'e2SJ', 'DGa6', 'WQjkFq', 'W6hdRmoY', 'W6VdR8oU', 'cmkunG', 'jfBdOa', 'o3tcTG', 'WQ11W7u', 'WOJcMYm', 'WPBcJCo2', 'D8kriW', '8kArQSoKWRS', 'WRFcImoG', 'WRGjmq', 'dZBcLW', '8kQdPgjQ', 'W4/dTYldKmoGoMlcRY4+', 'WPZcU2a', 'xCoBWOe', 'W53dV8oo', 'nw5Q', 'jhvH', 'WRJcTSoX', 'W6Hicq', 'W6BdQGe', 'evaW', 'bftdOq', 'WPRcUNC', 'oSkrtW', 'WQtcSKi', 'reP1', 'w8kylG', 'WPRdUSoN', 'hxG0', 'xebU', 'DmoowW', 'W5ivW4e', 'uEg4ISkk', 'q8kqlG', 'W4moW5W', 'WPNcHs8', 'nfJcTW', 'W71FdG', 'b8oMWPK', 'tuTY', 'a0RcQG', 'W4rntq', 're5U', 'cEg4TCkh', 'jCkWWOO', 'WQWMW7lcRCofuKLHW48MmvxcQmoN', 'melcTG', 'WQC+WO8', 'W6JdS8oX', 'c8kFW5hdVCo2WPfBw8kAWR3dQSkOwW', 'cXtdVG', 'WRhcQmkb', 'WRCzkW', 'bG0K', 'owhdSW', 'W4BcLb8', 'W5KWhq', 'd3NdRW', 'WQb8W68', 'tSofWOu', 'W71XW4y', 'sY8B', 'nhpcVG', 'WPKhna', 'W5WHmW', 'kN3cUW', 'iMhdVG', 'bCoKWOW', 'mmoayG', 'W4/dJqy', 'W7Xyhq', 'W4uMWR8', 'W7hdMWS', 'W7qbWO0', '4BMWtGC', 'W68wWOK', '4BQBW5ddHa', 'D0G6', 'rhrF', 'WQjIW74', 'obddTG', 'WP3cT8k2', 'WQyFeq', 'hmkpnW', '4BUiWOnY', 'WQ7cUSk6', 'WPbsWOL8WQusWPWtW4qSWOddTeW', 'W7RdT8o4', 'W7tcIdK', 'WRVcNZ8', 'u29k', 'ss/dRSkrWRFdSXK6Ava6W6FcSq', 'WOSdpq', 'vSooWRy', 'W5TtwG', 'WQRcHZC', 'WOFcHCon', 'gxqH', 'b8o4WOa', 'WQnnAG', 'qmkwja', 'fbBdSW', 'WP/cUge', 'fNpcSq', 'W4lcT8oKW7vEW7O0WQjVAfnJW4e', 'W63dUqa', 'xNnp', 'vwPt', 'hGPQ'];
-            _0x1787 = function() {
-                return _0x837e53;
-            };
-            return _0x1787();
-        }
-        for (var i = 0x0; i < chars[_0x208fe1(0x8b, 'SZ$M') + 'gth']; i++) {
-            var span = document[_0x208fe1(0x101, 'Imeb') + _0x208fe1(0x111, '8%lp') + _0x208fe1(0x89, 'xROS') + _0x208fe1(0x117, 'GhFh') + 't']('spa' + 'n');
-            span[_0x208fe1(0x118, 'Le8j') + 'le'][_0x208fe1(0xeb, 'HpRi') + _0x208fe1(0xfc, 'vvS[') + 'ion' + _0x208fe1(0x10c, ')Zzq') + 'ay'] = delay + 's', span[_0x208fe1(0xb5, 'z782') + _0x208fe1(0xd1, 'cq*R') + 'nte' + 'nt'] = chars[i], text[_0x208fe1(0xa0, 'Eu#^') + _0x208fe1(0x119, 'HpRi') + _0x208fe1(0x113, 'zy6Y') + 'ld'](span), delay -= 0.25;
-        }
-        loader[_0x208fe1(0xc6, ')1mY') + _0x208fe1(0x85, '*3nG') + _0x208fe1(0x11b, 'BpRI') + 'ld'](text), loader[_0x208fe1(0xa8, 'uWm0') + 'le'][_0x208fe1(0x90, 'D7(x') + _0x208fe1(0xbb, 'r$yi') + 'y'] = _0x208fe1(0x87, 'xes@') + 'ck', document[_0x208fe1(0xab, 'uWm0') + 'y'][_0x208fe1(0x102, 'XE]s') + _0x208fe1(0x88, '1P)x') + _0x208fe1(0x9b, 'Gjez') + 'ld'](loader);
-        var dvs = document[_0x208fe1(0xdc, '1P)x') + _0x208fe1(0x112, 'rC%&') + 'ele' + 'cto' + 'r'](_0x208fe1(0x136, 'y9I^') + 's');
-        window[_0x208fe1(0xee, 'r$yi') + _0x208fe1(0xa3, '(o^y')] = function() {
-            var _0x329fe8 = _0x208fe1;
-            loader[_0x329fe8(0x13e, 'bD76') + 'le']['dis' + _0x329fe8(0xe8, 'y9I^') + 'y'] = _0x329fe8(0xf0, 'z%TS') + 'e';
-        }, controlButton['onc' + 'lic' + 'k'] = function() {
-            var _0x5b142a = _0x208fe1;
-            controlButton['tex' + _0x5b142a(0xf7, 'HpRi') + 'nte' + 'nt'][_0x5b142a(0xa4, 'HB2h') + 'm']() === _0x5b142a(0x8f, '8%lp') + _0x5b142a(0xd5, 'eLEl') + _0x5b142a(0x134, 'y9I^') + _0x5b142a(0x132, 'uWm0') + _0x5b142a(0xb4, 'HpRi') ? (iframe[_0x5b142a(0x118, 'Le8j') + 'le']['dis' + _0x5b142a(0x140, 'HB2h') + 'y'] = _0x5b142a(0xf4, 'N7e#') + 'ck', dvs[_0x5b142a(0xfe, '$qDc') + 'le'][_0x5b142a(0x90, 'D7(x') + _0x5b142a(0xfa, 'cq*R') + 'y'] = 'non' + 'e', controlButton[_0x5b142a(0x10b, 'HpRi') + 'tCo' + 'nte' + 'nt'] = _0x5b142a(0x93, 'GhFh') + _0x5b142a(0xcd, 'GhFh') + 'Lại' + _0x5b142a(0x116, 'aBm$') + _0x5b142a(0xd3, 'Gjez') + _0x5b142a(0xf6, 'vlGz') + 'n\x20', controlButton[_0x5b142a(0x145, '8%lp') + 'end' + _0x5b142a(0x9b, 'Gjez') + 'ld'](img)) : (iframe[_0x5b142a(0xbf, 'XE]s') + 'le'][_0x5b142a(0xec, '*3nG') + _0x5b142a(0xbb, 'r$yi') + 'y'] = _0x5b142a(0x135, '$qDc') + 'e', dvs[_0x5b142a(0xc8, 'W@J$') + 'le'][_0x5b142a(0x11f, '&WP$') + _0x5b142a(0xc4, 'eLEl') + 'y'] = _0x5b142a(0x8c, '[xVn') + 'ck', controlButton[_0x5b142a(0x131, 'Le8j') + _0x5b142a(0xb8, 'ry#9') + 'nte' + 'nt'] = _0x5b142a(0x114, 'aBm$') + _0x5b142a(0xdd, '1P)x') + _0x5b142a(0xce, 'v&#V') + '\x20Kh' + _0x5b142a(0xa9, 'eLEl') + '\x20', controlButton[_0x5b142a(0xa1, '$qDc') + _0x5b142a(0xb0, 'pjOr') + _0x5b142a(0x11d, 'aBm$') + 'ld'](img));
-        };
     </script>
 </body>
-
 </html>
