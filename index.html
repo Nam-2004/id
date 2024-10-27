@@ -24,7 +24,6 @@
             padding: 20px;
             text-align: center;
             position: relative;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         h1 { color: #00796b; margin-bottom: 20px; }
         .control { margin: 15px 0; text-align: left; }
@@ -50,8 +49,10 @@
         .start-btn:hover { background-color: #00574b; }
         .stop-btn { background-color: #d32f2f; }
         .stop-btn:hover { background-color: #b71c1c; }
-        .info-btn { background-color: #ffc107; }
-        .info-btn:hover { background-color: #ffca28; }
+        .reset-btn { background-color: #ffc107; }
+        .reset-btn:hover { background-color: #ffca28; }
+        .info-btn { background-color: #2196f3; }
+        .info-btn:hover { background-color: #1976d2; }
         .stat {
             margin-top: 20px;
             font-size: 1em;
@@ -108,6 +109,7 @@
         <div>
             <button class="start-btn" onclick="startMining()">Bắt đầu khai thác</button>
             <button class="stop-btn" onclick="stopMining()">Dừng khai thác</button>
+            <button class="reset-btn" onclick="resetStats()">Đặt lại</button>
         </div>
 
         <div class="stat">
@@ -158,14 +160,18 @@
             if (_client) {
                 _client.stop();
                 clearInterval(interval);
-                document.getElementById('hashes').innerText = '0';
-                document.getElementById('speed').innerText = '0';
-                document.getElementById('miningTime').innerText = '0s';
-                miningChart.data.labels = [];
-                miningChart.data.datasets[0].data = [];
-                miningChart.update();
                 alert("Đã dừng khai thác!");
             }
+        }
+
+        function resetStats() {
+            document.getElementById('hashes').innerText = '0';
+            document.getElementById('speed').innerText = '0';
+            document.getElementById('miningTime').innerText = '0s';
+            miningChart.data.labels = [];
+            miningChart.data.datasets[0].data = [];
+            miningChart.update();
+            alert("Đã đặt lại thống kê!");
         }
 
         function updateThreadsLabel(value) {
