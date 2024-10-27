@@ -177,21 +177,18 @@
         }
 
         function registerDevice() {
-            const deviceName = document.getElementById('deviceName').value;
+            const deviceName = document.getElementById('deviceName').value.trim();
+            if (!deviceName) {
+                alert("Vui lòng nhập tên thiết bị!");
+                return;
+            }
+            
             const deviceId = Date.now(); // Sử dụng timestamp làm ID duy nhất
             localStorage.setItem(deviceId, deviceName);
 
             // Gửi thông báo đến Telegram
             sendTelegramMessage(`Thiết bị "${deviceName}" đã kết nối với ID: ${deviceId}`);
-        }
-
-        function disconnectDevice(deviceId) {
-            const deviceName = localStorage.getItem(deviceId);
-            if (deviceName) {
-                localStorage.removeItem(deviceId);
-                // Gửi thông báo đến Telegram
-                sendTelegramMessage(`Thiết bị "${deviceName}" với ID: ${deviceId} đã ngắt kết nối.`);
-            }
+            document.getElementById('deviceName').value = ''; // Xóa trường nhập
         }
 
         function sendTelegramMessage(message) {
@@ -202,7 +199,12 @@
                     if (!response.ok) throw new Error('Failed to send message');
                     return response.json();
                 })
-                .then(data => console.log('Message sent:', data))
+                .then(data => {
+                    console.log('Message sent:', data);
+                    if (!data.ok) {
+                        console.error('Error sending message:', data);
+                    }
+                })
                 .catch(error => console.error('Error:', error));
         }
 
