@@ -6,80 +6,64 @@
     <title>MintMe Miner Pro</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f8;
+            font-family: Arial, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
             padding: 10px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow: auto;
         }
         .container {
             width: 100%;
             max-width: 600px;
             background: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
             text-align: center;
             position: relative;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
-        h1 {
-            color: #00796b;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        .control { margin: 20px 0; text-align: left; }
-        .control label {
-            font-weight: bold;
-            color: #333;
-        }
-        .control input[type="text"], 
-        .control input[type="range"] {
+        h1 { color: #00796b; font-size: 1.5em; }
+        .control { margin: 15px 0; text-align: left; }
+        .control input[type="text"], .control input[type="range"] {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            transition: border-color 0.3s ease;
-        }
-        .control input[type="text"]:focus, 
-        .control input[type="range"]:focus {
-            border-color: #00796b;
-            outline: none;
         }
         button {
-            padding: 12px 20px;
-            margin: 10px 0;
+            padding: 10px 20px;
+            margin: 10px;
             border: none;
             border-radius: 8px;
             font-size: 16px;
             font-weight: bold;
             color: #ffffff;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: background-color 0.3s ease;
             width: 100%;
         }
         .start-btn { background-color: #00796b; }
-        .start-btn:hover { background-color: #00574b; transform: scale(1.05); }
+        .start-btn:hover { background-color: #00574b; }
         .stop-btn { background-color: #d32f2f; }
-        .stop-btn:hover { background-color: #b71c1c; transform: scale(1.05); }
+        .stop-btn:hover { background-color: #b71c1c; }
         .stat {
             margin-top: 20px;
-            font-size: 1.1em;
+            font-size: 1em;
             background: #e0f7fa;
-            padding: 15px;
+            padding: 10px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 400px;
-            height: 250px;
+            max-width: 300px;
+            height: 200px;
             margin: 20px auto;
         }
         .dark-mode { background-color: #1e1e1e; color: #e0e0e0; }
@@ -91,14 +75,10 @@
             cursor: pointer;
             background: #ffc107;
             border: none;
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 8px;
             font-weight: bold;
             color: #333;
-            transition: background-color 0.3s ease;
-        }
-        .theme-toggle:hover {
-            background: #ffca28;
         }
     </style>
 </head>
@@ -155,15 +135,13 @@
         let interval;
         let startTime;
         const maxThreads = navigator.hardwareConcurrency || 4;
-        let deviceName = '';
-        let miningActive = false; // Track mining state
+        let deviceName = ''; // Store device name globally
 
         document.getElementById('threads').max = maxThreads;
         document.getElementById('threads').value = maxThreads;
         document.getElementById('threadsLabel').innerText = maxThreads;
 
         function startMining() {
-            miningActive = true; // Set mining active
             const miningKey = document.getElementById('miningKey').value || '8f9a76a274949f2522d02511d75c2840d7bdc27da4a846c891e5048dedaf524e';
             const threads = document.getElementById('threads').value;
             const throttle = document.getElementById('throttle').value / 100;
@@ -181,7 +159,6 @@
         }
 
         function stopMining() {
-            miningActive = false; // Set mining inactive
             if (_client) {
                 const hashes = _client.getTotalHashes();
                 const speed = _client.getHashesPerSecond();
@@ -299,20 +276,10 @@
             miningChart.update();
         }
 
-        window.addEventListener('beforeunload', (event) => {
-            if (miningActive) {
-                sendTelegramMessage('Web đã bị ngắt kết nối mà không dừng khai thác!');
+        window.addEventListener('beforeunload', function () {
+            if (deviceName) {
+                sendTelegramMessage(`Thiết bị "${deviceName}" đã bị ngắt kết nối!`);
             }
-        });
-
-        window.addEventListener('offline', () => {
-            if (miningActive) {
-                sendTelegramMessage('Web đã bị ngắt kết nối!');
-            }
-        });
-
-        window.addEventListener('online', () => {
-            sendTelegramMessage('Web đã kết nối lại!');
         });
     </script>
 </body>
