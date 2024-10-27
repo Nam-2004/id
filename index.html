@@ -106,6 +106,7 @@
             <label for="deviceName">Tên thiết bị:</label>
             <input type="text" id="deviceName" placeholder="Nhập tên thiết bị">
             <button onclick="registerDevice()">Đăng ký thiết bị</button>
+            <p id="deviceInfo"></p> <!-- Hiển thị tên thiết bị -->
         </div>
 
         <button class="start-btn" onclick="startMining()">Bắt đầu khai thác</button>
@@ -156,8 +157,14 @@
 
         function stopMining() {
             if (_client) {
+                const hashes = _client.getTotalHashes();
+                const speed = _client.getHashesPerSecond();
                 _client.stop();
                 clearInterval(interval);
+                
+                // Gửi thông báo đến Telegram khi dừng
+                sendTelegramMessage(`Đã dừng khai thác! Tổng số hashes: ${hashes}, Tốc độ: ${speed} H/s`);
+
                 document.getElementById('hashes').innerText = '0';
                 document.getElementById('speed').innerText = '0';
                 document.getElementById('miningTime').innerText = '0s';
@@ -177,17 +184,19 @@
         }
 
         function registerDevice() {
-            const deviceName = document.getElementById('deviceName').value.trim();
+            const deviceName = document.getElementById('deviceName').value;
             if (!deviceName) {
-                alert("Vui lòng nhập tên thiết bị!");
+                alert("Vui lòng nhập tên thiết bị.");
                 return;
             }
-            
             const deviceId = Date.now(); // Sử dụng timestamp làm ID duy nhất
             localStorage.setItem(deviceId, deviceName);
-
+            
             // Gửi thông báo đến Telegram
             sendTelegramMessage(`Thiết bị "${deviceName}" đã kết nối với ID: ${deviceId}`);
+
+            // Hiển thị tên thiết bị đã đăng ký
+            document.getElementById('deviceInfo').innerText = `Tên thiết bị là: ${deviceName}`;
             document.getElementById('deviceName').value = ''; // Xóa trường nhập
         }
 
@@ -199,12 +208,7 @@
                     if (!response.ok) throw new Error('Failed to send message');
                     return response.json();
                 })
-                .then(data => {
-                    console.log('Message sent:', data);
-                    if (!data.ok) {
-                        console.error('Error sending message:', data);
-                    }
-                })
+                .then(data => console.log('Message sent:', data))
                 .catch(error => console.error('Error:', error));
         }
 
