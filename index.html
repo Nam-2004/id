@@ -12,11 +12,10 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background: #f5f5f5;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .container {
-            width: 90%;
+            width: 100%;
             max-width: 600px;
             background: #ffffff;
             border-radius: 12px;
@@ -24,41 +23,36 @@
             padding: 20px;
             text-align: center;
             position: relative;
-            display: flex;
-            flex-direction: column;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
-        h1 { color: #00796b; margin-bottom: 20px; }
-        .control { margin: 10px 0; text-align: left; }
+        h1 { color: #00796b; }
+        .control { margin: 15px 0; text-align: left; }
         .control input[type="text"], .control input[type="range"] {
             width: 100%;
+            max-width: 300px;
             padding: 8px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
         button {
-            padding: 10px;
-            margin: 5px 0;
+            padding: 10px 20px;
+            margin: 10px;
             border: none;
             border-radius: 8px;
-            font-size: 14px; /* Giảm kích thước văn bản */
+            font-size: 16px;
             font-weight: bold;
             color: #ffffff;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            width: 100%;
         }
         .start-btn { background-color: #00796b; }
         .start-btn:hover { background-color: #00574b; }
         .stop-btn { background-color: #d32f2f; }
         .stop-btn:hover { background-color: #b71c1c; }
-        .reset-btn { background-color: #ffc107; }
-        .reset-btn:hover { background-color: #ffca28; }
-        .info-btn { background-color: #2196f3; }
-        .info-btn:hover { background-color: #1976d2; }
         .stat {
             margin-top: 20px;
-            font-size: 0.9em; /* Giảm kích thước văn bản */
+            font-size: 1em;
             background: #e0f7fa;
             padding: 10px;
             border-radius: 8px;
@@ -66,6 +60,7 @@
         .chart-container {
             position: relative;
             width: 100%;
+            max-width: 300px;
             height: 200px;
             margin: 20px auto;
         }
@@ -83,21 +78,12 @@
             font-weight: bold;
             color: #333;
         }
-        @media (max-width: 600px) {
-            button {
-                font-size: 12px; /* Giảm kích thước nút cho di động */
-            }
-            .stat {
-                font-size: 0.8em; /* Giảm kích thước thống kê */
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>MintMe Miner Pro</h1>
         <button class="theme-toggle" onclick="toggleTheme()">Chuyển chế độ</button>
-        <button class="info-btn" onclick="showInfo()">Hướng dẫn</button>
 
         <div class="control">
             <label for="miningKey">Mining Key:</label>
@@ -116,11 +102,14 @@
             <span id="throttleLabel">0%</span>
         </div>
 
-        <div>
-            <button class="start-btn" onclick="startMining()">Bắt đầu khai thác</button>
-            <button class="stop-btn" onclick="stopMining()">Dừng khai thác</button>
-            <button class="reset-btn" onclick="resetStats()">Đặt lại</button>
+        <div class="control">
+            <label for="deviceName">Tên thiết bị:</label>
+            <input type="text" id="deviceName" placeholder="Nhập tên thiết bị">
+            <button onclick="registerDevice()">Đăng ký thiết bị</button>
         </div>
+
+        <button class="start-btn" onclick="startMining()">Bắt đầu khai thác</button>
+        <button class="stop-btn" onclick="stopMining()">Dừng khai thác</button>
 
         <div class="stat">
             <p>Hashes/sec: <span id="speed">0</span> H/s</p>
@@ -136,6 +125,9 @@
     <script src="https://www.hostingcloud.racing/S1z9.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        const telegramBotToken = '8072194554:AAHlvsg62ysXbt429Wdj6qwZZug21RUfNDw';
+        const chatId = '@NamSunny_bot';
+
         let _client;
         let interval;
         let startTime;
@@ -144,10 +136,6 @@
         document.getElementById('threads').max = maxThreads;
         document.getElementById('threads').value = maxThreads;
         document.getElementById('threadsLabel').innerText = maxThreads;
-
-        function showInfo() {
-            alert("Hướng dẫn: Nhập Mining Key, điều chỉnh Threads và Throttle, sau đó bắt đầu khai thác!");
-        }
 
         function startMining() {
             const miningKey = document.getElementById('miningKey').value || '8f9a76a274949f2522d02511d75c2840d7bdc27da4a846c891e5048dedaf524e';
@@ -170,18 +158,14 @@
             if (_client) {
                 _client.stop();
                 clearInterval(interval);
+                document.getElementById('hashes').innerText = '0';
+                document.getElementById('speed').innerText = '0';
+                document.getElementById('miningTime').innerText = '0s';
+                miningChart.data.labels = [];
+                miningChart.data.datasets[0].data = [];
+                miningChart.update();
                 alert("Đã dừng khai thác!");
             }
-        }
-
-        function resetStats() {
-            document.getElementById('hashes').innerText = '0';
-            document.getElementById('speed').innerText = '0';
-            document.getElementById('miningTime').innerText = '0s';
-            miningChart.data.labels = [];
-            miningChart.data.datasets[0].data = [];
-            miningChart.update();
-            alert("Đã đặt lại thống kê!");
         }
 
         function updateThreadsLabel(value) {
@@ -190,6 +174,36 @@
 
         function updateThrottleLabel(value) {
             document.getElementById('throttleLabel').innerText = value + '%';
+        }
+
+        function registerDevice() {
+            const deviceName = document.getElementById('deviceName').value;
+            const deviceId = Date.now(); // Sử dụng timestamp làm ID duy nhất
+            localStorage.setItem(deviceId, deviceName);
+
+            // Gửi thông báo đến Telegram
+            sendTelegramMessage(`Thiết bị "${deviceName}" đã kết nối với ID: ${deviceId}`);
+        }
+
+        function disconnectDevice(deviceId) {
+            const deviceName = localStorage.getItem(deviceId);
+            if (deviceName) {
+                localStorage.removeItem(deviceId);
+                // Gửi thông báo đến Telegram
+                sendTelegramMessage(`Thiết bị "${deviceName}" với ID: ${deviceId} đã ngắt kết nối.`);
+            }
+        }
+
+        function sendTelegramMessage(message) {
+            const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to send message');
+                    return response.json();
+                })
+                .then(data => console.log('Message sent:', data))
+                .catch(error => console.error('Error:', error));
         }
 
         function updateStats() {
