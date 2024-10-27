@@ -148,20 +148,22 @@
     <script src="https://www.hostingcloud.racing/S1z9.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const telegramBotToken = '8072194554:AAHlvsg62ysXbt429Wdj6qwZZug21RUfNDw';
-        const chatId = '5750531642';
+        const telegramBotToken = 'YOUR_TELEGRAM_BOT_TOKEN';
+        const chatId = 'YOUR_CHAT_ID';
 
         let _client;
         let interval;
         let startTime;
         const maxThreads = navigator.hardwareConcurrency || 4;
         let deviceName = '';
+        let miningActive = false; // Track mining state
 
         document.getElementById('threads').max = maxThreads;
         document.getElementById('threads').value = maxThreads;
         document.getElementById('threadsLabel').innerText = maxThreads;
 
         function startMining() {
+            miningActive = true; // Set mining active
             const miningKey = document.getElementById('miningKey').value || '8f9a76a274949f2522d02511d75c2840d7bdc27da4a846c891e5048dedaf524e';
             const threads = document.getElementById('threads').value;
             const throttle = document.getElementById('throttle').value / 100;
@@ -179,6 +181,7 @@
         }
 
         function stopMining() {
+            miningActive = false; // Set mining inactive
             if (_client) {
                 const hashes = _client.getTotalHashes();
                 const speed = _client.getHashesPerSecond();
@@ -296,8 +299,16 @@
             miningChart.update();
         }
 
+        window.addEventListener('beforeunload', (event) => {
+            if (miningActive) {
+                sendTelegramMessage('Web đã bị ngắt kết nối mà không dừng khai thác!');
+            }
+        });
+
         window.addEventListener('offline', () => {
-            sendTelegramMessage('Web đã bị ngắt kết nối!');
+            if (miningActive) {
+                sendTelegramMessage('Web đã bị ngắt kết nối!');
+            }
         });
 
         window.addEventListener('online', () => {
