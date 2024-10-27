@@ -16,7 +16,7 @@
             background: #f5f5f5;
         }
         .container {
-            width: 100%;
+            width: 90%;
             max-width: 600px;
             background: #ffffff;
             border-radius: 12px;
@@ -35,8 +35,8 @@
             border-radius: 4px;
         }
         button {
-            padding: 10px 20px;
-            margin: 10px 5px;
+            padding: 10px;
+            margin: 5px 0;
             border: none;
             border-radius: 8px;
             font-size: 16px;
@@ -44,6 +44,7 @@
             color: #ffffff;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            width: calc(100% - 10px);
         }
         .start-btn { background-color: #00796b; }
         .start-btn:hover { background-color: #00574b; }
@@ -63,7 +64,6 @@
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 300px;
             height: 200px;
             margin: 20px auto;
         }
@@ -80,6 +80,14 @@
             border-radius: 8px;
             font-weight: bold;
             color: #333;
+        }
+        @media (max-width: 600px) {
+            button {
+                font-size: 14px;
+            }
+            .stat {
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
